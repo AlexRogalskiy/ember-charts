@@ -1,0 +1,119 @@
+<div class="col-md-10 col-md-offset-2 left-border main-content-container">
+  <div class="chart-header">
+    <h2>Stacked Bar Chart</h2>
+  </div>
+
+  <div class="example-container">
+    <div class="chart-container">
+      {{stacked-vertical-bar-chart
+        maxBarThickness=maxBarThickness
+        selectedSeedColor=selectedSeedColor
+        data=data
+        maxLabelHeight=maxLabelHeight
+        betweenBarPadding=betweenBarPadding
+        hasXAxisTitle=hasXAxisTitle
+        hasYAxisTitle=hasYAxisTitle
+        xValueDisplayName=xValueDisplayName
+        yValueDisplayName=yValueDisplayName
+        xTitleHorizontalOffset=xTitleHorizontalOffset
+        yTitleVerticalOffset=yTitleVerticalOffset
+        strokeWidth=strokeWidth
+        barSortKey=barSortKey
+        barSortAscending=barSortAscending
+        sliceSortKey=sliceSortKey
+      }}
+    </div>
+  </div>
+
+  <div class="row bumper-30">
+    <div class="col-md-6">
+      <h4>Ember Bindings</h4>
+
+      <div class="form-horizontal">
+        <div class="form-group" data-test="data">
+          <label class="col-lg-4 control-label">Data</label>
+          <div class="col-lg-8">
+            {{view "select"
+              content=availableDataSets
+              value=selectedData
+              class="form-control"
+            }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label" data-test="color">Color</label>
+          <div class="col-lg-8">
+            {{view "select"
+              content=seedColorNames
+              value=selectedSeedColorName
+              class="form-control"
+            }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label" data-test="bar-sorting">Slice Sort Key</label>
+          <div class="col-lg-8">
+            {{view "select"
+            content=sliceSortKeys
+            value=selectedSliceSortKey
+            class="form-control"
+          }}
+        </div>
+      </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label" data-test="bar-sorting">Bar Sort Key</label>
+          <div class="col-lg-8">
+            {{view "select"
+              content=barSortKeys
+              value=selectedBarSortKey
+              class="form-control"
+            }}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-4 col-lg-8">
+            <div class="checkbox">
+              <label>
+                {{input
+                  type="checkbox"
+                  checked=barSortAscending
+                }}
+                Sort Bars Ascending
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Rotated Label Height</label>
+          <div class="col-lg-8">
+            {{scrubber-component min="20" max="100" value=maxLabelHeight}}
+            <span class="help-block">Max Label Height: {{maxLabelHeight}}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Between Bar Padding</label>
+          <div class="col-lg-8">
+            {{scrubber-component min="0" max="1" step="0.05" value=betweenBarPadding}}
+            <span class="help-block">Between Bar Padding: {{betweenBarPadding}}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Slice Outline Thickness</label>
+          <div class="col-lg-8">
+            {{scrubber-component min="0" max="5" step="0.1" value=strokeWidth}}
+            <span class="help-block">Slice Outline Thickness: {{strokeWidth}}</span>
+          </div>
+        </div>
+
+        {{partial "axis-title-config"}}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h4>JSON Data</h4>
+      <div class="chart-json">
+        <pre>{{prettyPrintedData}}</pre>
+      </div>
+    </div>
+  </div>
+</div>
